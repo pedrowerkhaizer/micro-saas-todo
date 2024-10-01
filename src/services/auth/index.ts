@@ -6,9 +6,14 @@ import { prisma } from "@/services/database";
 export const {
   handlers: { GET, POST },
   auth,
-  signIn,
-  signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/auth/",
+    signOut: "/auth",
+    error: "/auth",
+    verifyRequest: "/auth",
+    newUser: "/auth",
+  },
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
